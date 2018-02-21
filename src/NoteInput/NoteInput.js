@@ -5,8 +5,14 @@ class NoteInput extends Component {
 
   render() {
     return(
-      <div>
-        <p>NoteInput</p>
+      <div className="NoteInput">
+        <input 
+          className="NewNote"
+          type="text"
+          placeholder="Add A New Note"/>
+
+        <button className="AddNote">Add</button>
+
       </div>
     );
   }

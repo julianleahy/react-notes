@@ -1,0 +1,37 @@
+.NoteInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewNote,
+.AddNote {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #666;
+  border: none;
+}
+
+.NewNote {
+  background-color: #efefef;
+  transition: .2s ease-in;
+  width: 90%;
+}
+
+.AddNote {
+  background-color: lightgreen; 
+}
+
+.NewNote:focus {
+  background-color: lightblue;
+  transition: .2s ease-in;
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .NewNote {
+    width: 33%;
+  }
+}
+

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -90,15 +92,32 @@ textarea {
    Author: Julian Leahy - julianleahy.com
    ========================================================================== */
 
-body {
-  width: 100%;
-  height: 100vh;
-  background: url('./assets/bg_l.jpg') no-repeat center;
-  background-size: cover;
-  font-size: 16px;
-}
+   html {
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: url('./assets/bg_l.jpg') no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Lato', sans-serif;
+  }
 
-
+  
+  
 /* ==========================================================================
    Helper classes
    ========================================================================== */

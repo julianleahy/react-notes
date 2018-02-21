@@ -5,8 +5,11 @@ class Note extends Component {
 
   render() {
     return(
-      <div>
-        <p>Note</p>
+      <div className="Note">
+        <p className="NoteContent">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus autem rerum sed distinctio eos! Eum, molestias voluptatem! Recusandae, optio voluptatibus?
+        </p>
+        <button className="NoteDelete">X</button>
       </div>
     );
   }
