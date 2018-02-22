@@ -13,8 +13,8 @@ class App extends Component {
     ]
   }
 
-  handleDeleteNote = () => {
-    console.log('Delete')
+  handleDeleteNote = (noteId) => {
+    console.log(`id ${noteId}`)
   }
 
   render() {
@@ -23,7 +23,7 @@ class App extends Component {
       return <Note 
         content={note.noteContent} 
         key={note.noteId} 
-        delete={this.handleDeleteNote}/>
+        delete={() => this.handleDeleteNote(note.noteId)}/>
     })
 
 
