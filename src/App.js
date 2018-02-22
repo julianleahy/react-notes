@@ -34,12 +34,23 @@ class App extends Component {
       })
     })
 
+    this.database.on('child_removed', snap => {
+
+      const i = previousNotes.findIndex(note => {
+        return note.id === snap.key
+      })
+
+      previousNotes.splice(i,1);
+
+      this.setState({
+        note: previousNotes
+      })
+    })
+
   }
 
-  handleDeleteNote = (index) => {
-    const noteCopy = [...this.state.note];
-    noteCopy.splice(index, 1);
-    this.setState({ note: noteCopy });
+  handleDeleteNote = (noteId) => {
+    this.database.child(noteId).remove();
   }
 
 
@@ -51,8 +62,11 @@ class App extends Component {
     if (this.state.newNote.length === 0) {
       return false;
     }
-
     this.database.push().set({ noteContent: this.state.newNote })
+
+    this.setState({
+      newNote : ''
+    })
   }
 
   render() {
@@ -60,7 +74,7 @@ class App extends Component {
       return <Note
         content={note.noteContent}
         key={index}
-        delete={() => this.handleDeleteNote(index)} />
+        delete={() => this.handleDeleteNote(note.id)} />
     })
 
     return (
