@@ -10,7 +10,9 @@ class App extends Component {
       {noteContent : 'This is note 1', noteId : 1},
       {noteContent : 'This is note 2', noteId : 2},
       {noteContent : 'This is note 3', noteId : 3},
-    ]
+    ],
+    newNote : ''
+
   }
 
   handleDeleteNote = (noteId) => {
@@ -23,13 +25,40 @@ class App extends Component {
     this.setState({note : noteCopy});
   }
 
+  handeInputChange = (event) => {
+    this.setState({ newNote : event.target.value });
+  }
+
+  handleAddNote = () => {
+ 
+    if(this.state.newNote.length === 0){
+      return false;
+    }
+
+    const newNoteContent = {
+      noteContent : this.state.newNote,
+      noteId : 4
+    };
+
+    const noteCopy = [...this.state.note];
+
+    noteCopy.push(newNoteContent);
+
+    this.setState(
+      { 
+        note : noteCopy,
+        newNote : ''
+      })
+    
+  }
+
   render() {
 
     const notes = this.state.note.map(note => {
       return <Note 
         content={note.noteContent} 
         key={note.noteId} 
-        delete={() => this.handleDeleteNote(note.noteId)}/>
+        delete={() => this.handleDeleteNote(note.noteId)} />
     })
 
 
@@ -42,7 +71,10 @@ class App extends Component {
           {notes}
         </div>
         <footer className="NoteInputWrap">
-          <NoteInput />
+          <NoteInput 
+            addNew={this.handeInputChange} 
+            value={this.state.newNote}
+            click={this.handleAddNote} />
         </footer>
       </div>
     );

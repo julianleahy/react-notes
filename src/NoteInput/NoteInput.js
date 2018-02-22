@@ -6,9 +6,12 @@ const NoteInput = (props) => (
     <input
       className="NewNote"
       type="text"
-      placeholder="Add A New Note" />
+      placeholder="Add A New Note"
+      onChange={props.addNew} 
+      value={props.value}/>
 
-    <button className="AddNote">Add</button>
+    <button 
+      className="AddNote" onClick={props.click}>Add</button>
 
   </div>
 );
