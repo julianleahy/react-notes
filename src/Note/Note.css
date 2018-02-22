@@ -7,7 +7,14 @@
 }
 
 .NoteContent {
+  color: #333;
+}
 
+.NoteContent::first-letter {
+  text-transform: uppercase;
+  font-size: 1.2em;
+  padding-right: 2px;
+  color: brown;
 }
 
 .NoteDelete {
