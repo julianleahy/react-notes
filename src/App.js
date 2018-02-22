@@ -3,25 +3,38 @@ import Note from './Note/Note';
 import NoteInput from './NoteInput/NoteInput';
 import { DB_CONFIG } from './Config/Config';
 import firebase from 'firebase/app';
+import 'firebase/database';
 import './App.css';
 
 class App extends Component {
 
- 
-     state = {
-      note: [
-        { noteContent: 'This is note 1' },
-        { noteContent: 'This is note 2' },
-        { noteContent: 'This is note 3' },
-      ],
-      newNote: ''
-    }
-
-    app = firebase.initializeApp(DB_CONFIG);
-    database = this.app.database().ref().child('notes');
 
 
 
+  state = {
+    note: [],
+    newNote: ''
+  }
+
+  app = firebase.initializeApp(DB_CONFIG);
+  database = this.app.database().ref().child('notes');
+
+
+  componentWillMount() {
+    const previousNotes = this.state.note;
+
+    this.database.on('child_added', snap => {
+      previousNotes.push({
+        id: snap.key,
+        noteContent: snap.val().noteContent
+      })
+
+      this.setState({
+        note: previousNotes
+      })
+    })
+
+  }
 
   handleDeleteNote = (index) => {
     const noteCopy = [...this.state.note];
@@ -39,12 +52,7 @@ class App extends Component {
       return false;
     }
 
-    const newNoteContent = { noteContent: this.state.newNote };
-
-    const noteCopy = [...this.state.note];
-    noteCopy.push(newNoteContent);
-
-    this.setState({ note: noteCopy, newNote: '' })
+    this.database.push().set({ noteContent: this.state.newNote })
   }
 
   render() {
