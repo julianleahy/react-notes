@@ -4,6 +4,15 @@ import NoteInput from './NoteInput/NoteInput';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    note : [
+      {noteTitle : 'This is note 1', noteId : 1},
+      {noteTitle : 'This is note 2', noteId : 2},
+      {noteTitle : 'This is note 3', noteId : 3},
+    ]
+  }
+
   render() {
     return (
       <div className="App">
