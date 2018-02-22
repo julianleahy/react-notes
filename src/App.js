@@ -14,19 +14,19 @@ class App extends Component {
   }
 
   render() {
+
+    const notes = this.state.note.map(note => {
+      return <Note title={note.noteTitle} key={note.noteId} />
+    })
+
+
     return (
       <div className="App">
         <div className="NoteHeading">
           <h1>React Notes</h1>
         </div>
         <div className="NoteWrapper">
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
+          {notes}
         </div>
         <footer className="NoteInputWrap">
           <NoteInput />
