@@ -7,60 +7,44 @@ class App extends Component {
 
   state = {
     note : [
-      {noteContent : 'This is note 1', noteId : 1},
-      {noteContent : 'This is note 2', noteId : 2},
-      {noteContent : 'This is note 3', noteId : 3},
+      {noteContent : 'This is note 1'},
+      {noteContent : 'This is note 2'},
+      {noteContent : 'This is note 3'},
     ],
     newNote : ''
-
   }
 
-  handleDeleteNote = (noteId) => {
-    // find index of note thats matched noteId
-    const idx = this.state.note.findIndex(x => {
-      return x.noteId === noteId
-    })
+  handleDeleteNote = (index) => {
     const noteCopy = [...this.state.note];
-    noteCopy.splice(idx, 1);
+    noteCopy.splice(index, 1);
     this.setState({note : noteCopy});
   }
+
 
   handeInputChange = (event) => {
     this.setState({ newNote : event.target.value });
   }
 
   handleAddNote = () => {
- 
     if(this.state.newNote.length === 0){
       return false;
     }
 
-    const newNoteContent = {
-      noteContent : this.state.newNote,
-      noteId : 4
-    };
+    const newNoteContent = { noteContent : this.state.newNote };
 
     const noteCopy = [...this.state.note];
-
     noteCopy.push(newNoteContent);
 
-    this.setState(
-      { 
-        note : noteCopy,
-        newNote : ''
-      })
-    
+    this.setState({ note : noteCopy, newNote : '' }) 
   }
 
   render() {
-
-    const notes = this.state.note.map(note => {
+    const notes = this.state.note.map((note, index) => {
       return <Note 
         content={note.noteContent} 
-        key={note.noteId} 
-        delete={() => this.handleDeleteNote(note.noteId)} />
+        key={index} 
+        delete={() => this.handleDeleteNote(index)} />
     })
-
 
     return (
       <div className="App">
