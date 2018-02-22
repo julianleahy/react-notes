@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './NoteInput.css';
 
-class NoteInput extends Component {
+const NoteInput = (props) => (
+  <div className="NoteInput">
+    <input
+      className="NewNote"
+      type="text"
+      placeholder="Add A New Note" />
 
-  render() {
-    return(
-      <div className="NoteInput">
-        <input 
-          className="NewNote"
-          type="text"
-          placeholder="Add A New Note"/>
+    <button className="AddNote">Add</button>
 
-        <button className="AddNote">Add</button>
-
-      </div>
-    );
-  }
-}
+  </div>
+);
 
 export default NoteInput;
