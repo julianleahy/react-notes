@@ -6,7 +6,9 @@ const Note = (props) => (
     <p className="NoteContent">
       {props.content}
     </p>
-    <button className="NoteDelete">X</button>
+    <button 
+      className="NoteDelete"
+      onClick={props.delete}>X</button>
   </div>
 );
 

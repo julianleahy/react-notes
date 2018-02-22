@@ -13,10 +13,17 @@ class App extends Component {
     ]
   }
 
+  handleDeleteNote = () => {
+    console.log('Delete')
+  }
+
   render() {
 
     const notes = this.state.note.map(note => {
-      return <Note content={note.noteContent} key={note.noteId} />
+      return <Note 
+        content={note.noteContent} 
+        key={note.noteId} 
+        delete={this.handleDeleteNote}/>
     })
 
 
