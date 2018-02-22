@@ -1,48 +1,57 @@
 import React, { Component } from 'react';
 import Note from './Note/Note';
 import NoteInput from './NoteInput/NoteInput';
+import { DB_CONFIG } from './Config/Config';
+import firebase from 'firebase/app';
 import './App.css';
 
 class App extends Component {
 
-  state = {
-    note : [
-      {noteContent : 'This is note 1'},
-      {noteContent : 'This is note 2'},
-      {noteContent : 'This is note 3'},
-    ],
-    newNote : ''
-  }
+ 
+     state = {
+      note: [
+        { noteContent: 'This is note 1' },
+        { noteContent: 'This is note 2' },
+        { noteContent: 'This is note 3' },
+      ],
+      newNote: ''
+    }
+
+    app = firebase.initializeApp(DB_CONFIG);
+    database = this.app.database().ref().child('notes');
+
+
+
 
   handleDeleteNote = (index) => {
     const noteCopy = [...this.state.note];
     noteCopy.splice(index, 1);
-    this.setState({note : noteCopy});
+    this.setState({ note: noteCopy });
   }
 
 
   handeInputChange = (event) => {
-    this.setState({ newNote : event.target.value });
+    this.setState({ newNote: event.target.value });
   }
 
   handleAddNote = () => {
-    if(this.state.newNote.length === 0){
+    if (this.state.newNote.length === 0) {
       return false;
     }
 
-    const newNoteContent = { noteContent : this.state.newNote };
+    const newNoteContent = { noteContent: this.state.newNote };
 
     const noteCopy = [...this.state.note];
     noteCopy.push(newNoteContent);
 
-    this.setState({ note : noteCopy, newNote : '' }) 
+    this.setState({ note: noteCopy, newNote: '' })
   }
 
   render() {
     const notes = this.state.note.map((note, index) => {
-      return <Note 
-        content={note.noteContent} 
-        key={index} 
+      return <Note
+        content={note.noteContent}
+        key={index}
         delete={() => this.handleDeleteNote(index)} />
     })
 
@@ -55,8 +64,8 @@ class App extends Component {
           {notes}
         </div>
         <footer className="NoteInputWrap">
-          <NoteInput 
-            addNew={this.handeInputChange} 
+          <NoteInput
+            addNew={this.handeInputChange}
             value={this.state.newNote}
             click={this.handleAddNote} />
         </footer>
