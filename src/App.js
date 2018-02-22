@@ -8,9 +8,6 @@ import './App.css';
 
 class App extends Component {
 
-
-
-
   state = {
     note: [],
     newNote: ''
@@ -19,51 +16,50 @@ class App extends Component {
   app = firebase.initializeApp(DB_CONFIG);
   database = this.app.database().ref().child('notes');
 
-
   componentWillMount() {
+
     const previousNotes = this.state.note;
 
+    // will run inially and any time a new note is added to DB
     this.database.on('child_added', snap => {
       previousNotes.push({
         id: snap.key,
         noteContent: snap.val().noteContent
       })
+      this.setNoteState(previousNotes);
+    }) // END added
 
-      this.setState({
-        note: previousNotes
-      })
-    })
-
+    // anytime a note is removed from DB this will access it's key
     this.database.on('child_removed', snap => {
-
+      // find index where state version matches key
       const i = previousNotes.findIndex(note => {
         return note.id === snap.key
       })
-
+      // remove it from array and reset state
       previousNotes.splice(i,1);
+      this.setNoteState(previousNotes);
+    }) // END delete
 
-      this.setState({
-        note: previousNotes
-      })
-    })
 
+  } // END componentWillMount
+
+  setNoteState = (previousNotes) => {
+    this.setState({note: previousNotes})
   }
 
   handleDeleteNote = (noteId) => {
     this.database.child(noteId).remove();
   }
 
-
   handeInputChange = (event) => {
     this.setState({ newNote: event.target.value });
   }
 
   handleAddNote = () => {
-    if (this.state.newNote.length === 0) {
-      return false;
-    }
-    this.database.push().set({ noteContent: this.state.newNote })
+    if (this.state.newNote.length === 0) return; // no input
 
+    this.database.push().set({ noteContent: this.state.newNote })
+    // reset input value to an empty string
     this.setState({
       newNote : ''
     })
