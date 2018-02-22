@@ -14,7 +14,13 @@ class App extends Component {
   }
 
   handleDeleteNote = (noteId) => {
-    console.log(`id ${noteId}`)
+    // find index of note thats matched noteId
+    const idx = this.state.note.findIndex(x => {
+      return x.noteId === noteId
+    })
+    const noteCopy = [...this.state.note];
+    noteCopy.splice(idx, 1);
+    this.setState({note : noteCopy});
   }
 
   render() {
