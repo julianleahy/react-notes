@@ -13,8 +13,8 @@
 .NoteContent::first-letter {
   text-transform: uppercase;
   font-size: 1.2em;
-  padding-right: 2px;
   color: brown;
+  font-weight: 700;
 }
 
 .NoteDelete {
