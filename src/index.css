@@ -104,16 +104,22 @@ textarea {
   }
   
   body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 6rem;
-    min-height: 100%;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    background: url('./assets/bg_l.jpg') no-repeat center;
-    background-attachment: fixed;
-    background-size: cover;
     font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0 0 6rem 0;
+    background: url('./assets/bg_m.jpg') no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  @media (min-width: 1200px) {
+    body {
+      background: url('./assets/bg_l.jpg') no-repeat center;
+      background-size: cover;
+    }
   }
 
   

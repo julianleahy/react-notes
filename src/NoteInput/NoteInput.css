@@ -19,16 +19,28 @@
 }
 
 .AddNote {
-  background-color: lightgreen; 
+  background-color: #262626; 
+  color: #fff;
+  transition: .2s ease-in;
+}
+
+.AddNote:hover {
+  background-color: darkred;
+  transition: .2s ease-in;
+  cursor: pointer;
+}
+
+.AddNote:focus {
+  outline: none;
 }
 
 .NewNote:focus {
+  outline: none;
   background-color: lightblue;
   transition: .2s ease-in;
 }
 
 
-/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .NewNote {
     width: 33%;
