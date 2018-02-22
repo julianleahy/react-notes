@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Note from './Note/Note';
 import NoteInput from './NoteInput/NoteInput';
+import GitLink from './GitLink/GitLink';
 import { DB_CONFIG } from './Config/Config';
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -75,6 +76,7 @@ class App extends Component {
 
     return (
       <div className="App">
+         <GitLink />
         <div className="NoteHeading">
           <h1>React Notes</h1>
         </div>
