@@ -7,16 +7,16 @@ class App extends Component {
 
   state = {
     note : [
-      {noteTitle : 'This is note 1', noteId : 1},
-      {noteTitle : 'This is note 2', noteId : 2},
-      {noteTitle : 'This is note 3', noteId : 3},
+      {noteContent : 'This is note 1', noteId : 1},
+      {noteContent : 'This is note 2', noteId : 2},
+      {noteContent : 'This is note 3', noteId : 3},
     ]
   }
 
   render() {
 
     const notes = this.state.note.map(note => {
-      return <Note title={note.noteTitle} key={note.noteId} />
+      return <Note content={note.noteContent} key={note.noteId} />
     })
 
 
