@@ -119,6 +119,7 @@ textarea {
     body {
       background: url('./assets/bg_l.jpg') no-repeat center;
       background-size: cover;
+      background-attachment: fixed;
     }
   }
 
