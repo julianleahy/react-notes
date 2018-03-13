@@ -110,20 +110,11 @@ textarea {
     min-height: 100%;
     margin: 0;
     padding: 0 0 6rem 0;
-    background: url('./assets/bg_m.jpg') no-repeat center;
+    background: url('./assets/bg_l.jpg') no-repeat center;
     background-size: cover;
     background-attachment: fixed;
   }
 
-  @media (min-width: 1200px) {
-    body {
-      background: url('./assets/bg_l.jpg') no-repeat center;
-      background-size: cover;
-      background-attachment: fixed;
-    }
-  }
-
-  
   
 /* ==========================================================================
    Helper classes
