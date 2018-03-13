@@ -6,7 +6,7 @@
 .NoteHeading > h1 {
   position: fixed;
   width: 100%;
-  color: #fff;
+  color: darkturquoise;
   text-align: center;
   background-color: rgba(0,0,0,0.3);
   margin: 0;
@@ -36,5 +36,5 @@ footer.NoteInputWrap {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #efefef;
+  background-color: antiquewhite;
 }
